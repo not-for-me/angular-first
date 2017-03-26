@@ -7,7 +7,7 @@ export class UserDetailService {
   headerInfo: Headers
   constructor(public http: Http) {
     this.headerInfo = new Headers();
-    this.headerInfo.set('Authorization', 'angular-is-awesome');
+    this.headerInfo.set('X-My-Api-Token', 'angular-is-awesome');
   }
 
   findUser(no: number) {
