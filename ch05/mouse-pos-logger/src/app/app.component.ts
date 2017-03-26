@@ -10,9 +10,13 @@ import { LogLevel } from './log-level.enum';
 export class AppComponent {
   title = 'mpl works!';
 
-  constructor(private logger: MySpecialLoggerService) { 
+  constructor(private logger: MySpecialLoggerService) {
     this.logger = new MySpecialLoggerService(LogLevel.INFO);
     // this.testLoggerLevel();
+  }
+
+  printDebugLog() {
+    this.logger.debug("test depenency injector tree!");
   }
 
   testLoggerLevel() {
