@@ -1,17 +1,25 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Optional, Host } from '@angular/core';
 import { MySpecialLoggerService } from '../my-special-logger.service';
 import { LOG_LEVEL_TOKEN } from '../app.tokens';
 import { LogLevel } from '../log-level.enum';
+import { LoggerService } from '../logger-service';
+import { AnotherLoggerService } from '../another-logger.service';
+
 
 @Component({
   selector: 'mpl-mouse-track-zone',
   templateUrl: './mouse-track-zone.component.html',
   styleUrls: ['./mouse-track-zone.component.css'],
-  providers: [MySpecialLoggerService, { provide: LOG_LEVEL_TOKEN, useValue: LogLevel.DEBUG }]
+  // providers: [MySpecialLoggerService, { provide: LOG_LEVEL_TOKEN, useValue: LogLevel.DEBUG }]
 })
 export class MouseTrackZoneComponent implements OnInit {
+  logger: LoggerService;
 
-  constructor(private logger: MySpecialLoggerService) {
+  constructor(
+    @Host() @Optional() mySpecialLogger: MySpecialLoggerService,
+    anotherLogger: AnotherLoggerService
+  ) {
+    this.logger = mySpecialLogger ? mySpecialLogger : anotherLogger;
   }
 
   ngOnInit() {
