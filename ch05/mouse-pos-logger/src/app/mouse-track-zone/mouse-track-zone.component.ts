@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MySpecialLoggerService } from '../my-special-logger.service';
 import { LogLevel } from '../log-level.enum';
 
@@ -9,11 +9,9 @@ import { LogLevel } from '../log-level.enum';
   styleUrls: ['./mouse-track-zone.component.css']
 })
 export class MouseTrackZoneComponent implements OnInit {
-  logLevel: LogLevel = LogLevel.INFO;
-  logger: MySpecialLoggerService;
+  @Input() logger: MySpecialLoggerService;
 
   constructor() {
-    this.logger = new MySpecialLoggerService(this.logLevel);
   }
 
   ngOnInit() {

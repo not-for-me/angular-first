@@ -14,7 +14,7 @@ export class AppComponent {
 
   constructor() {
     this.logger = new MySpecialLoggerService(LogLevel.INFO);
-    this.testLoggerLevel();
+    // this.testLoggerLevel();
   }
 
   testLoggerLevel() {
