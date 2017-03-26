@@ -19,8 +19,7 @@ export class LangSelectorComponent implements OnInit {
   ngOnInit() {
   }
 
-  setLangCode(code: string) {
-    this.langCode = code;
+  syncToService(code) {
     this.i18nSupporter.langCode = code;
   }
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { I18nSupportService } from '../i18n-support.service';
+import { MdSnackBar } from '@angular/material';
+
 
 @Component({
   selector: 'app-welcome-msg',
@@ -12,7 +14,9 @@ export class WelcomeMsgComponent implements OnInit, AfterViewInit {
   private valid = false;
   private static CHK_KEYUP_WAIT_SEC = 5000;
 
-  constructor(public i18nSupporter: I18nSupportService) { }
+  constructor(public i18nSupporter: I18nSupportService,
+    private snackbar: MdSnackBar) { }
+
 
   ngOnInit() {
 
@@ -21,7 +25,7 @@ export class WelcomeMsgComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     const checkTouchedFn = () => {
       if (this.valid) return;
-      alert('이름을 입력해 주세요');
+      this.snackbar.open('이름을 입력해 주세요', '확인', { duration: 3000 });
     };
 
     setTimeout(checkTouchedFn, WelcomeMsgComponent.CHK_KEYUP_WAIT_SEC);
