@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { MySpecialLoggerService } from './my-special-logger.service';
 import { LogLevel } from './log-level.enum';
 
-
 @Component({
   selector: 'mpl-root',
   templateUrl: './app.component.html',
@@ -10,9 +9,8 @@ import { LogLevel } from './log-level.enum';
 })
 export class AppComponent {
   title = 'mpl works!';
-  logger: MySpecialLoggerService;
 
-  constructor() {
+  constructor(private logger: MySpecialLoggerService) { 
     this.logger = new MySpecialLoggerService(LogLevel.INFO);
     // this.testLoggerLevel();
   }

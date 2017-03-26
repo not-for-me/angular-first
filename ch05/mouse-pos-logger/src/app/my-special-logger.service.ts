@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { LogLevel } from './log-level.enum';
 import * as format from 'date-fns/format';
-
+import { LOG_LEVEL_TOKEN } from './app.tokens';
 
 @Injectable()
 export class MySpecialLoggerService {
@@ -10,7 +10,7 @@ export class MySpecialLoggerService {
   private readonly MAX_HISTORY_CNT: number = 100;
   private readonly TIME_FORMATTER: string = "YYYY-MM-DD HH:mm:ss.SSS";
 
-  constructor(logLevel: LogLevel) {
+  constructor( @Inject(LOG_LEVEL_TOKEN) logLevel: LogLevel) {
     this.logLevel = logLevel;
   }
 
