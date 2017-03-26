@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -71,7 +71,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__math__ = __webpack_require__(2);
 /* harmony export (immutable) */ __webpack_exports__["a"] = areaOfCircle;
 /* harmony export (immutable) */ __webpack_exports__["b"] = areaOfRectangle;
 
@@ -88,6 +88,39 @@ function areaOfRectangle(w, h) {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__area_util__ = __webpack_require__(0);
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    registerBtnCbAtfterDomReady();
+}, false);
+
+const circleAreaCb = function () {
+    const radius = document.getElementById("circle-radius").value;
+    document.getElementById("circle-area").value = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__area_util__["a" /* areaOfCircle */])(radius);
+};
+
+const rectangleAreaCb = function () {
+    const w = document.getElementById("rectangle-width").value;
+    const h = document.getElementById("rectangle-height").value;
+    document.getElementById("rectangle-area").value = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__area_util__["b" /* areaOfRectangle */])(w, h);
+};
+
+const registerBtnCbAtfterDomReady = function () {
+    document.getElementById('circle-button')
+        .addEventListener('click', circleAreaCb);
+
+    document.getElementById('rectangle-button')
+        .addEventListener('click', rectangleAreaCb);
+};
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -119,39 +152,6 @@ const PI = 3.141592;
 function square(a) {
   return a * a;
 }
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__area_util__ = __webpack_require__(0);
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    registerBtnCbAtfterDomReady();
-}, false);
-
-const circleAreaCb = function () {
-    const radius = document.getElementById("circle-radius").value;
-    document.getElementById("circle-area").value = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__area_util__["a" /* areaOfCircle */])(radius);
-};
-
-const rectangleAreaCb = function () {
-    const w = document.getElementById("rectangle-width").value;
-    const h = document.getElementById("rectangle-height").value;
-    document.getElementById("rectangle-area").value = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__area_util__["b" /* areaOfRectangle */])(w, h);
-};
-
-const registerBtnCbAtfterDomReady = function () {
-    document.getElementById('circle-button')
-        .addEventListener('click', circleAreaCb);
-
-    document.getElementById('rectangle-button')
-        .addEventListener('click', rectangleAreaCb);
-};
 
 
 /***/ })
