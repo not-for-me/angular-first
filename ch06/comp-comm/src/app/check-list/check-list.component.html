@@ -6,9 +6,9 @@
 </div>
 <div class="row">
   <span *ngFor="let item of checkList; let i = index">
-  <label for="chk-{{i + 1}}">{{item}}</label>
-  <input type="checkbox" id="chk-{{i + 1}}" (click)="onChecked($event, i)" [(ngModel)]="checkedResult[i]" />
+  <label for="chk-{{item.idx}}">{{item.content}}</label>
+  <input type="checkbox" id="chk-{{item.idx}}" (ngModelChange)="onChecked($event, item)" [(ngModel)]="item.isChecked" />
 </span>
 </div>
-<cc-check-list-result [itemEvent]="curItemEvent"
-  (onSelectedToRemoveItem)="removeCheckedItem($event)"></cc-check-list-result>
+<cc-check-list-result [checkItem]="curCheckedItem"
+  (onSelectedToRemoveItem)="unCheckedItem($event)"></cc-check-list-result>

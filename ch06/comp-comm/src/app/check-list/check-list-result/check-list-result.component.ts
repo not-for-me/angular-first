@@ -1,10 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ItemEvent } from '../item-event';
-
-interface CheckedItem {
-  idx: number;
-  content: string;
-}
+import { CheckItem } from '../check-item';
 
 @Component({
   selector: 'cc-check-list-result',
@@ -12,7 +7,7 @@ interface CheckedItem {
   styleUrls: ['./check-list-result.component.css']
 })
 export class CheckListResultComponent implements OnInit {
-  _checkedData: CheckedItem[];
+  _checkedData: CheckItem[];
   checkedCnt: number;
   @Output() onSelectedToRemoveItem = new EventEmitter<number>();
 
@@ -23,15 +18,17 @@ export class CheckListResultComponent implements OnInit {
   ngOnInit() { }
 
   @Input()
-  set itemEvent(curItemEvent: ItemEvent) {
-    if (curItemEvent) {
-      if (curItemEvent.isChecked) {
-        this._checkedData.push(curItemEvent);
-      } else {
-        this._checkedData = this._checkedData.filter(val => val.idx !== curItemEvent.idx);
-      }
-      this.checkedCnt = this._checkedData.length;
+  set checkItem(curItemEvent: CheckItem) {
+    if (!curItemEvent) {
+      return;
     }
+
+    if (curItemEvent.isChecked) {
+      this._checkedData.push(curItemEvent);
+    } else {
+      this._checkedData = this._checkedData.filter(val => val.idx !== curItemEvent.idx);
+    }
+    this.checkedCnt = this._checkedData.length;
   }
 
   onRemove(idx) {

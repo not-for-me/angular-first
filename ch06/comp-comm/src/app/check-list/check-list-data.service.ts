@@ -1,39 +1,50 @@
 import { Injectable } from '@angular/core';
+import { CheckItem } from './check-item';
 
 @Injectable()
 export class CheckListDataService {
-  totalCnt;
-  curCnt;
+  private checkList: CheckItem[] = [];
 
-  constructor() {
-    this.initCount(0);
-  }
+  constructor() { }
 
-  initCount(total) {
-    this.totalCnt = total;
-    this.curCnt = 0;
+  initList(totalCnt) {
+    for (let i = 0; i < totalCnt; i++) {
+      const checkItem = this.getNewCheckItem(i+1);
+      this.checkList.push(checkItem);
+    }
+    return this.checkList;
   }
 
   changeTotalCntByOp(op: string) {
     if (op === '+') {
-      this.totalCnt++;
+      const totalCnt = this.checkList.length
+      const newItem = this.getNewCheckItem(totalCnt + 1);
+      this.checkList.push(newItem);
     } else if (op === '-') {
-      this.totalCnt--;
+      this.checkList.pop();
     }
-
-    return this.totalCnt;
   }
 
-  changeCurCntBy(isIncrease: boolean) {
-    if (isIncrease) {
-      this.curCnt++;
-    } else {
-      this.curCnt--;
-    }
+  checkItem(checkItem: CheckItem) {
+    this.checkList[checkItem.idx-1] = checkItem;
+  }
+
+  unCheckItem(idx: number) {
+    this.checkList[idx-1].isChecked = false;
   }
 
   getCheckedItemRatioText() {
-    const roundedRatio = Math.round((this.curCnt / this.totalCnt) * 100);
+    const curCnt = this.checkList.filter(i => i.isChecked).length;
+    const totalCnt = this.checkList.length;
+    const roundedRatio = Math.round((curCnt / totalCnt) * 100);
     return `${roundedRatio}%`;
+  }
+
+  private getNewCheckItem(idx: number) {
+    return { idx: idx, content: this.getCheckListMsg(idx), isChecked: false };
+  }
+
+  private getCheckListMsg(idx: number): string {
+    return `check list ${idx}`;
   }
 }
